@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'net.neoforged.moddev' version '2.0.28-beta'
+}
+
+version = mod_version
+group = mod_group
+
+base {
+    archivesName = mod_name
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(java_version)
+    }
+}
+
+repositories {
+    maven { url = "https://maven.neoforged.net/releases" }
+    maven { url = "https://maven.minecraftforge.net/" }
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = "https://dit.lilatidb.org/maven/" }
+    maven { url = "https://api.modrinth.com/maven" }
+    maven { url = "https://cursemaven.com" }
+    mavenLocal()
+}
+
+neoForge {
+    version = neoforge_version
+
+    parchment {
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
+    }
+
+    runs {
+        server {
+            systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+        }
+    }
+
+    mods {
+        sablenbtguard {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    // Local mod jars for compilation (compileOnly - not bundled)
+    compileOnly files("/home/syg/桌面/mods-deploy/sable-neoforge-1.21.1-1.2.5.jar")
+    compileOnly files("libs/sable-companion-common-1.21.1-1.6.0.jar")
+    compileOnly files("libs/dev.simulated_team.simulated.simulated-neoforge-1.21.1-1.2.3.jar")
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
