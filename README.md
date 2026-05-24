@@ -1,4 +1,4 @@
-# Sable NBT Guard
+# Create-Aeronautics-nocopy
 
 A server-side NeoForge mod that prevents item duplication caused by Sable physics assembly/disassembly of structures containing BlockEntities with NBT data.
 
